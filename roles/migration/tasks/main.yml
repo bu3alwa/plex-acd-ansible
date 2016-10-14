@@ -1,0 +1,6 @@
+- name: Copy Remote-To-Remote
+  synchronize: 
+    src: "{{ migration_src_path }}"
+    dest: "{{ migration_dest_path }}"
+    mode: "{{ migration_mode }}"
+  delegate_to: "{{ migration_delegate_to }}"

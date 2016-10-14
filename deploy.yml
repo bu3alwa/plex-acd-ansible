@@ -1,0 +1,19 @@
+# Run common script to get hosts ready
+- hosts: all
+  roles:
+      - common
+
+# Configure plex, sonarr, and all other tools
+- hosts: plex
+  roles:
+      - plex
+      - sonarr
+      - mono
+      - acd-cli
+      - encfs
+      - unionfs-fuse
+      - { role: nginx, nginx_servers: "{{ nginx_sites }}" }
+      - { role: nzbget, nzbget_mount_path: "{{ mount_path }}" }
+      - { role: acd-cli-mount, acd_mount_path: "{{ mount_path }}"}
+      - { role: encfs-mount, encfs_mount_path: "{{ mount_path }}"}
+      - { role: unionfs-fuse-mount, union_mount_path: "{{ mount_path }}"}

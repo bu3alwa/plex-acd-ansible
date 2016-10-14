@@ -1,0 +1,4 @@
+- name: install encfs
+  apt:
+      pkg: encfs
+      state: present

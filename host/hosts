@@ -1,0 +1,6 @@
+[servers]
+plex 
+ 
+[plex-server]
+plex
+

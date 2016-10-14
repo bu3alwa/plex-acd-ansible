@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ENCFS6_CONFIG='{{ encfs_mount_path }}/.encfs.xml' encfs --public --extpass="cat /root/.config/encfs/encfs_password" $*

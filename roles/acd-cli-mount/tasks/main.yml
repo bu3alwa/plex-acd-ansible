@@ -1,0 +1,35 @@
+- name: acdmount
+  template:
+      src: acdmount.j2
+      dest: /usr/bin/acdmount
+      owner: root
+      group: root
+      mode: 0755
+
+- name: create acd-storage
+  file:
+      path: "{{ acd_mount_path }}/acd-storage"
+      state: directory
+
+- name: create .acd-storage
+  file:
+      path: "{{ acd_mount_path }}/.acd-storage"
+      state: directory
+
+- name: create local-storage
+  file:
+      path: "{{ acd_mount_path }}/local-storage"
+      state: directory
+
+- name: create .local-storage
+  file:
+      path: "{{ acd_mount_path }}/.local-storage"
+      state: directory
+
+- name: add acd fstab entry
+  mount:
+      name: "{{ acd_mount_path }}/.acd-storage"
+      src: acdmount
+      fstype: fuse
+      opts: "_netdev"
+      state: present

@@ -1,0 +1,37 @@
+- group: name=nzb state=present
+- name: add user nzb
+  user:
+      name: nzb
+      group: nzb
+      shell: /bin/bash
+      move_home: yes
+      home: /home/nzb
+      createhome: yes
+
+- name: add apt repository
+  apt_repository:
+      repo: ppa:modriscoll/nzbget
+      update_cache: yes
+
+- name: install nzbget
+  apt:
+      pkg: nzbget
+      state: present
+  ignore_errors: "{{ ansible_check_mode }}" 
+
+- name: systemd nzbget
+  template:
+      src: nzbget.service.j2
+      dest: /etc/systemd/system/nzbget.service
+      owner: root
+      group: root
+      mode: 0640
+- meta: flush_handlers
+
+- name: ensure nabget enabled and started
+  systemd:
+      name: nzbget
+      enabled: yes
+      state: started
+
+

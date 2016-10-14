@@ -1,0 +1,23 @@
+- name: encfsmount
+  template:
+      src: encfsmount.j2
+      dest: /usr/bin/encfsmount
+      owner: root
+      group: root
+      mode: 0755
+
+- name: add acd encfs fstab entry
+  mount:
+      name: "{{ encfs_mount_path }}/acd-storage"
+      src: "encfsmount#{{ encfs_mount_path }}/.acd-storage"
+      fstype: fuse
+      opts: rw,user,auto,umask=0000
+      state: present
+
+- name: add local encfs fstab entry
+  mount:
+      name: "{{ encfs_mount_path }}/local-storage"
+      src: "encfsmount#{{ encfs_mount_path }}/.local-storage"
+      fstype: fuse
+      opts: rw,user,auto,umask=0000
+      state: present

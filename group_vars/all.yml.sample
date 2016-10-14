@@ -1,0 +1,12 @@
+mount_path: /mnt/storage
+ansible_check_mode: True
+
+nginx_sites:
+    - server_name: plex.domain.com
+      proxy_pass: http://localhost:32400
+    - server_name: sonarr.domain.com
+      proxy_pass: http://localhost:8989
+    - server_name: nzb.domain.com
+      proxy_pass: http://localhost:6789
+    - server_name: domain.com
+      proxy_pass: http://localhost:27017

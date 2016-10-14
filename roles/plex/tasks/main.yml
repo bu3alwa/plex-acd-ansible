@@ -1,0 +1,33 @@
+- name: add apt key
+  apt_key:
+      url: http://shell.ninthgate.se/packages/shell.ninthgate.se.gpg.key
+
+- name: add apt repository
+  apt_repository:
+        repo: deb http://shell.ninthgate.se/packages/debian jessie main
+        update_cache: yes
+
+- name: install plex
+  apt:
+      pkg: plexmediaserver
+      state: present
+
+- name: systemd plex
+  template:
+      src: plexmediaserver.service.j2
+      dest: /etc/systemd/system/plexmediaserver.service
+      owner: root
+      group: root
+      mode: 0640
+
+      
+- meta: flush_handlers
+
+- name: ensure plex enabled and started
+  systemd:
+      name: plexmediaserver
+      enabled: yes
+      state: started
+  notify:
+      - restart plex
+

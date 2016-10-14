@@ -1,0 +1,19 @@
+[Unit]
+Description=NZBGet Daemon
+Documentation=http://nzbget.net/Documentation
+After=network.target
+RequiresMountsFor={{ nzbget_mount_path }}
+
+[Service]
+User=nzb
+Group=nzb
+Type=forking
+ExecStart=/usr/bin/nzbget -c /etc/nzbget.conf -D
+ExecStop=/usr/bin/nzbget -Q
+ExecReload=/usr/bin/nzbget -O
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+

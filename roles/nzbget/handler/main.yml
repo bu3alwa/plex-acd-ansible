@@ -1,0 +1,4 @@
+- name: restart nzbget
+  systemd:
+    name: nzbget
+    state: restarted
