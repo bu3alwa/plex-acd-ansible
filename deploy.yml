@@ -17,3 +17,4 @@
       - { role: acd-cli-mount, acd_mount_path: "{{ mount_path }}"}
       - { role: encfs-mount, encfs_mount_path: "{{ mount_path }}"}
       - { role: unionfs-fuse-mount, union_mount_path: "{{ mount_path }}"}
+      - cron

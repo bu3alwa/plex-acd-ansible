@@ -1,0 +1,13 @@
+- name: cron remove
+  cron:
+      minute: 0
+      hour: 4
+      job: "find /mnt/storage/local-storage/ -type f -mtime +4 -exec rm -rf {} \\;"
+      state: present
+      
+- name: cron upload
+  cron:
+      minute: 0
+      hour: 1
+      job: "sh /mnt/storage/upload.sh"
+      state: present
