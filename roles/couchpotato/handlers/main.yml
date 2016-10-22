@@ -1,0 +1,4 @@
+- name: restart couch
+  systemd:
+      name: couchpotato
+      state: restarted

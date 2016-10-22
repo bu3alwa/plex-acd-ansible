@@ -10,3 +10,5 @@ nginx_sites:
       proxy_pass: http://localhost:6789
     - server_name: domain.com
       proxy_pass: http://localhost:27017
+    - server_name: couch.domain.com
+      proxy_pass: http://localhost:5050

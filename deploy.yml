@@ -8,6 +8,7 @@
   roles:
       - plex
       - sonarr
+      - couchpotato
       - mono
       - acd-cli
       - encfs
@@ -18,3 +19,4 @@
       - { role: encfs-mount, encfs_mount_path: "{{ mount_path }}"}
       - { role: unionfs-fuse-mount, union_mount_path: "{{ mount_path }}"}
       - cron
+
