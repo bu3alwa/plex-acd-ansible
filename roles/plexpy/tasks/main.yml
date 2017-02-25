@@ -1,0 +1,35 @@
+- apt: name=git state=present
+
+- group: name=plexpy state=present
+- name: add user plexpy
+  user:
+      name: plexpy
+      #group: plexpy
+      #shell: /bin/bash
+      #move_home: yes
+      #home: /home/plexpy
+      #createhome: plexpy
+
+- git: repo=https://github.com/JonnyWong16/plexpy.git  dest=/opt/plexpy
+- file: dest=/opt/plexpy owner=plexpy group=plexpy recurse=yes
+
+- name: systemd plexpy
+  template:
+      src: plexpy.service.j2
+      dest: /etc/systemd/system/plexpy.service
+      owner: root
+      group: root
+      mode: 0640
+
+- meta: flush_handlers
+
+- name: ensure plexpy enabled and started
+  systemd:
+      name: plexpy
+      enabled: yes
+      state: started
+  ignore_errors: "{{ ansible_check_mode }}" 
+  notify:
+      - restart plexpy
+
+

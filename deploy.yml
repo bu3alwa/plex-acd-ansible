@@ -9,6 +9,7 @@
       - plex
       - sonarr
       - couchpotato
+      - plexpy
       - mono
       - acd-cli
       - encfs
