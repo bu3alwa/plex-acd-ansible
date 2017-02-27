@@ -13,6 +13,7 @@
       - mono
       - acd-cli
       - encfs
+      - ombi
       - unionfs-fuse
       - { role: nginx, nginx_servers: "{{ nginx_sites }}" }
       - { role: nzbget, nzbget_mount_path: "{{ mount_path }}" }

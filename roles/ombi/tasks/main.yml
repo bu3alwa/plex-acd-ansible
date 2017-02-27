@@ -1,0 +1,40 @@
+- name: add user ombi
+  user:
+      name: ombi
+      group: ombi
+      shell: /bin/bash
+      move_home: yes
+      home: /home/ombi
+      createhome: yes
+
+- file: dest=/opt/Ombi owner=ombi group=ombi state=directory
+
+- name: ombi extract
+  unarchive:
+      src: https://github.com/tidusjar/Ombi/releases/download/v2.1.0/Ombi.zip
+      dest: /opt/Ombi
+      remote_src: True
+
+- file: dest=/opt/Ombi owner=ombi group=ombi recurse=yes
+
+
+- name: systemd ombi
+  template:
+      src: ombi.service.j2
+      dest: /etc/systemd/system/ombi.service
+      owner: root
+      group: root
+      mode: 0640
+
+- meta: flush_handlers
+
+- name: ensure ombi enabled and started
+  systemd:
+      name: ombi
+      enabled: yes
+      state: started
+  ignore_errors: "{{ ansible_check_mode }}" 
+  notify:
+      - restart ombi
+
+ 

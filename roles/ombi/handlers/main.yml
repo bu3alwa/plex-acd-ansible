@@ -1,0 +1,4 @@
+- name: restart ombi
+  systemd:
+      name: ombi
+      state: restarted

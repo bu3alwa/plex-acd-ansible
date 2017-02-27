@@ -10,6 +10,6 @@
 
 - name: install mono
   apt:
-      pkg: apt-transport-https
+      pkg: mono-complete
       state: present
   ignore_errors: "{{ ansible_check_mode }}" 
