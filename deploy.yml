@@ -8,8 +8,8 @@
   roles:
       - plex
       - sonarr
-      - couchpotato
       - plexpy
+      - radarr
       - mono
       - acd-cli
       - encfs
