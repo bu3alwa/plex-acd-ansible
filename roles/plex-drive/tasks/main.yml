@@ -1,0 +1,16 @@
+- apt: name=fuse state=present
+  
+- name: download plexdrive
+  get_url:
+      url: https://github.com/dweidenfeld/plexdrive/releases/download/5.0.0/plexdrive-linux-amd64
+      dest: /tmp
+
+- name: install plexdrive
+  copy:
+    src: /tmp/plexdrive-linux-amd64
+    mode: 0755
+    dest: /usr/bin/plexdrive
+    owner: root
+    group: root
+    remote_src: true
+  ignore_errors: "{{ ansible_check_mode }}" 

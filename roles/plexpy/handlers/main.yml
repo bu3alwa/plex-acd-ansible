@@ -1,0 +1,4 @@
+- name: restart plexpy
+  systemd:
+    name: plexpy
+    state: restarted

@@ -1,0 +1,15 @@
+# /etc/systemd/system/plexdrive.service
+
+[Unit]
+Description=Plexdrive
+AssertPathIsDirectory=/mnt/plexdrive
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/plexdrive -v 2 {{ plex_mount_path }}/.gdrive -o allow_other --cache-file /tmp/.plexdrive/cache.bolt --chunk-size=20M ---max-size=25 --root-node-id=0BwcFHYiWGruHVldHUFBXQ3FMa3M 
+ExecStop=/bin/fusermount -u {{ plex_mount_path }}/.gdrive
+Restart=on-abort
+
+[Install]
+WantedBy=default.target

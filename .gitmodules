@@ -1,0 +1,3 @@
+[submodule "ansible-rclone"]
+	path = ansible-rclone
+	url = https://github.com/stefangweichinger/ansible-rclone.git

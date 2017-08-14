@@ -1,0 +1,4 @@
+- name: restart plex-drive
+  systemd:
+    name: plex-drive
+    state: restarted
