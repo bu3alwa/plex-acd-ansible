@@ -16,3 +16,7 @@ script:
   # Check the role/playbook's syntax.
   - ansible-playbook -i deploy.yml --syntax-check
   - "ansible-playbook -i deploy.yml --connection=local --sudo"
+os:
+  - linux
+dist:
+  - xenial
