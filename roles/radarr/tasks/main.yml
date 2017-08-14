@@ -8,14 +8,15 @@
       home: /home/radarr
       createhome: yes
 
+- file: dest=/opt/Radarr owner=radarr group=radarr recurse=yes
 
 - name: radarr extract
   unarchive:
       src: https://github.com/Radarr/Radarr/releases/download/v0.2.0.375/Radarr.develop.0.2.0.375.linux.tar.gz
       dest: /opt/Radarr
       remote_src: True
+  ignore_errors: "{{ ansible_check_mode }}" 
 
-- file: dest=/opt/Radarr owner=radarr group=radarr recurse=yes
 
 
 - name: systemd radarr

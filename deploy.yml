@@ -4,21 +4,22 @@
       - common
 
 # Configure plex, sonarr, and all other tools
-- hosts: plex
+- hosts: plex2
   roles:
       - plex
       - sonarr
       - plexpy
       - radarr
       - mono
-      - acd-cli
+      - rclone
+      - plex-drive
       - encfs
       - ombi
       - unionfs-fuse
       - { role: nginx, nginx_servers: "{{ nginx_sites }}" }
       - { role: nzbget, nzbget_mount_path: "{{ mount_path }}" }
-      - { role: acd-cli-mount, acd_mount_path: "{{ mount_path }}"}
       - { role: encfs-mount, encfs_mount_path: "{{ mount_path }}"}
+      - { role: plex-drive-mount, plex_mount_path: "{{ mount_path }}"}
       - { role: unionfs-fuse-mount, union_mount_path: "{{ mount_path }}"}
       - cron
 

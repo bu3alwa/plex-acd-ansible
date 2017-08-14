@@ -14,7 +14,7 @@
 - name: add sorted union fstab entry
   mount:
       name: "{{ union_mount_path }}/sorted"
-      src: "unionfsmount#{{ union_mount_path }}/acd-storage=RO:{{ union_mount_path }}/local-storage=RW"
+      src: "unionfsmount#{{ union_mount_path }}/gdrive=RO:{{ union_mount_path }}/local-storage=RW"
       fstype: fuse
       opts: rw,user,auto,umask=0000
       state: present

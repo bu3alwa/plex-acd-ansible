@@ -10,7 +10,12 @@
       #home: /home/plexpy
       #createhome: plexpy
 
-- git: repo=https://github.com/JonnyWong16/plexpy.git  dest=/opt/plexpy
+- name: plexpy github 
+  git:
+      repo: https://github.com/JonnyWong16/plexpy.git
+      dest: /opt/plexpy
+  ignore_errors: "{{ ansible_check_mode }}" 
+
 - file: dest=/opt/plexpy owner=plexpy group=plexpy recurse=yes
 
 - name: systemd plexpy

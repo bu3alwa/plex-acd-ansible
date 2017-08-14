@@ -1,3 +1,4 @@
+- group: name=ombi state=present
 - name: add user ombi
   user:
       name: ombi
@@ -14,6 +15,7 @@
       src: https://github.com/tidusjar/Ombi/releases/download/v2.1.0/Ombi.zip
       dest: /opt/Ombi
       remote_src: True
+  ignore_errors: "{{ ansible_check_mode }}" 
 
 - file: dest=/opt/Ombi owner=ombi group=ombi recurse=yes
 

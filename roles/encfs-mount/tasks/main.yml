@@ -9,7 +9,7 @@
 - name: add acd encfs fstab entry
   mount:
       name: "{{ encfs_mount_path }}/acd-storage"
-      src: "encfsmount#{{ encfs_mount_path }}/.acd-storage"
+      src: "encfsmount#{{ encfs_mount_path }}/.gdrive"
       fstype: fuse
       opts: rw,user,auto,umask=0000
       state: present
